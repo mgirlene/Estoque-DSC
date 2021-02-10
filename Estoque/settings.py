@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gerenciador',
     'bootstrap4',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +72,7 @@ WSGI_APPLICATION = 'Estoque.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'estoque',
+        'NAME': 'estoque_dsc',
         'USER': 'postgres',
         'PASSWORD': '9991',
         'HOST': '127.0.0.1',
@@ -119,3 +120,8 @@ USE_TZ = True
 
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'accounts.CustomUsuario'
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "login"
+LOGIN_URL = "login"
