@@ -7,9 +7,10 @@ from django.contrib.auth.views import LoginView, LogoutView
 from .forms import UsuarioRegisterForm
 from .models import CustomUsuario
 
+
 class LoginView(LoginView):
     template_name = 'login.html'
-    success_url = settings.LOGIN_REDIRECT_URL
+    success_url = 'index'
 
 
 class LogoutView(LogoutView):

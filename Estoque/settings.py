@@ -122,6 +122,6 @@ STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'accounts.CustomUsuario'
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "index"
 LOGOUT_REDIRECT_URL = "login"
 LOGIN_URL = "login"
