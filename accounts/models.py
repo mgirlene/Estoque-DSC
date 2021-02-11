@@ -1,17 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
-
 class UsuarioManager(BaseUserManager):
 
     def _create_user(self, email, password, **extra_fields):
         if not email:
-            raise ValueError('Email é obrigatório')
+            raise ValueError('E-mail é obrigatorio')
         email = self.normalize_email(email)
         user = self.model(email=email, username=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
-
         return
 
     def create_user(self, email, password=None, **extra_fields):
@@ -28,16 +26,16 @@ class UsuarioManager(BaseUserManager):
             raise ValueError('Superuser precisa ter is_staff=True')
         return self._create_user(email, password, **extra_fields)
 
-
 class CustomUsuario(AbstractUser):
     email = models.EmailField('E-mail', unique=True)
+    is_staff = models.BooleanField('Membro da equipe', default=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', ]
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     def __str__(self):
         return self.email
 
     class Meta:
-        db_table = 'usuario'
+        db_table = "usuario"
     objects = UsuarioManager()

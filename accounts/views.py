@@ -1,25 +1,25 @@
-from django.contrib.auth.views import LoginView
-from django.views.generic.edit import CreateView,UpdateView, DeleteView
-from django.urls import reverse
-from django.conf import settings
-
 from django.shortcuts import render
 from django.contrib import messages
+from django.urls import reverse
+from django.conf import settings
+from django.views.generic.edit import CreateView,UpdateView, DeleteView
+from django.contrib.auth.views import LoginView, LogoutView
+from .forms import UsuarioRegisterForm
+from .models import CustomUsuario
 
-from Estoque import settings
-from accounts.models import CustomUsuario
-from accounts.forms import CustomUsuarioForm
-
-class AdminLogin(LoginView):
+class LoginView(LoginView):
     template_name = 'login.html'
-    success_url = 'gerenciador'
+    success_url = settings.LOGIN_REDIRECT_URL
 
 
-class CreateUser(CreateView):
+class LogoutView(LogoutView):
+    template_name = 'index'
+
+class UserCreateView(CreateView):
     model = CustomUsuario
     success_url = 'login'
     template_name = 'cadastroUser.html'
-    form_class = CustomUsuarioForm
+    form_class = UsuarioRegisterForm
 
     def get_success_url(self):
         messages.success(self.request, 'Usuário cadastrado com sucesso!')
