@@ -20,12 +20,4 @@ class ProdutoForm(ModelForm):
 class EstoqueForm(ModelForm):
     class Meta:
         model = estoque
-        fields = ('nome', 'usuario')
-
-    def save(self, commit=True):
-        e = super(EstoqueForm, self).save()
-        e.usuario = self.cleaned_data['usuario']
-
-        if commit:
-            e.save()
-        return e
+        fields = ['nome']

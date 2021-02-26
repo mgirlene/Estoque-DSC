@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Meus Estoques
+{% endblock title %}
+
+{% block page %}
+    <h3 style="margin-top: .8rem;">Deletar Estoque</h3>
+{% endblock page %}
+
+{% block content %}
+    <!-- Content Row -->
+    <div class="row">
+        <div class="card" style="margin-top:20px;">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <h2>Você realmente deseja excluir o estoque: "{{ object.nome }}" ?</h2>
+                    <input class="btn btn-danger btn-user btn-block" type="submit" value="Confirmar">
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}

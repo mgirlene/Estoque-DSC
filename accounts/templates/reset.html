@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Login</title>
+    <title>Resetar Senha</title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -36,11 +36,13 @@
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Bem vindo de Volta!</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">Esqueceu sua senha?</h1>
+                                    <p>Insira seu endereço de e-mail abaixo
+                                        e enviaremos um link para redefinir sua senha!</p>
                                 </div>
                                 <form method="post" class="user">
                                     {% csrf_token %}
@@ -61,22 +63,18 @@
                                     {% endif %}
                                     <div class="form-group">
                                         <input type="email" class="form-control form-control-user"
-                                               id="username" name="username"  aria-describedby="emailHelp"
+                                               id="username" name="username" aria-describedby="emailHelp"
                                                placeholder="Email">
                                         <p class="errorlist">{{ form.errors.username }}</p>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user"
-                                               id="password" name="password" placeholder="Senha">
-                                        <p class="errorlist">{{ form.errors.password }}</p>
-                                    </div>
-                                   <button type="submit" class="btn btn-primary btn-user btn-block">Entrar</button>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">Redefir Senha
+                                    </button>
                                 </form>
                                 <div class="text-center">
-                                    <a class="small" href="{% url 'reset' %}">Esqueceu a senha?</a>
+                                    <a class="small" href="{% url 'cadastrar_usuario' %}">Cadastre-se</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="{% url 'cadastrar_usuario' %}">Cadastre-se</a>
+                                    <a class="small" href="{% url 'login' %}">Já possui uma conta? Entrar!</a>
                                 </div>
                             </div>
                         </div>

@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Cadastrar Estoque
+    Editar Estoque
 {% endblock title %}
 
 {% block page %}
-    <h3 style="margin-top: .8rem;">Cadastro</h3>
+    <h3 style="margin-top: .8rem;">Update</h3>
 {% endblock page %}
 
 {% block content %}
@@ -14,7 +14,7 @@
         <div class="col-lg-6">
             <div class="p-5">
                 <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Novo Estoque</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Editar Estoque</h1>
                 </div>
                 <form method="post" class="user">
                     {% csrf_token %}
@@ -26,6 +26,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">Cadastrar</button>
                 </form>
+
             </div>
         </div>
     </div>

@@ -16,6 +16,8 @@ class LoginView(LoginView):
 class LogoutView(LogoutView):
     template_name = 'index'
 
+def reset(request):
+    return render(request, 'reset.html')
 
 class UserCreateView(CreateView):
     model = CustomUsuario
