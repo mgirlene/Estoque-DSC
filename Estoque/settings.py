@@ -27,7 +27,9 @@ INSTALLED_APPS = [
     'gerenciador',
     'bootstrap4',
     'accounts',
-   ]
+    'estoques',
+    'produtos',
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -12,15 +12,15 @@
     <!-- Content Row -->
     <div class="row">
         {% csrf_token %}
-        {% for estoque in estoque_list %}
+        {% for Estoque in estoque_list %}
             <div class="card" style="margin-top:20px;">
                 <div class="card-header">
-                    <h3>{{ estoque.nome }}</h3>
+                    <h3>{{ Estoque.nome }}</h3>
                 </div>
                 <div class="footer" style="margin: 20px;">
 
                     <div class="btn-group">
-                        <a class="btn btn-primary mr-3" href="{% url 'estoque_update' estoque.id %}">
+                        <a class="btn btn-primary mr-3" href="{% url 'estoque_update' Estoque.id %}">
                             <i class="fas fa-edit"></i>
                             <span>Editar</span>
                         </a>
@@ -28,25 +28,25 @@
 
                     <div class="btn-group">
                         <a class="btn btn-danger mr-3"
-                           href="{% url 'estoque_delete' estoque.id %}">
+                           href="{% url 'estoque_delete' Estoque.id %}">
                             <i class="fas fa-trash-alt"></i>
                             <span>Excluir</span>
                         </a>
                     </div>
 
                      <div class="btn-group">
-                        <a class="btn btn-danger mr-3"
-                           href="{% url 'estoque_delete' estoque.id %}">
-                            <i class="fas fa-trash-alt"></i>
-                            <span>Add Produto</span>
+                        <a class="btn btn-success mr-3"
+                           href="{% url 'produto'  %}">
+                            <i class="fas fa-plus"></i>
+                            <span>Produto</span>
                         </a>
                     </div>
 
                     <div class="btn-group">
-                        <a class="btn btn-danger mr-3"
-                           href="{% url 'estoque_delete' estoque.id %}">
-                            <i class="fas fa-trash-alt"></i>
-                            <span>Ver</span>
+                        <a class="btn btn-info mr-3"
+                           href="{% url 'estoque_delete' Estoque.id %}">
+                            <i class="fas fa-search"></i>
+                            <span>Visualizar</span>
                         </a>
                     </div>
                 </div>

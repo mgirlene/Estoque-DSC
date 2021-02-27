@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Cadastrar Produto
+{% endblock title %}
+
+{% block page %}
+    <h3 style="margin-top: .8rem;">Cadastrar Produto</h3>
+{% endblock page %}
+
+{% block content %}
+    <!-- Content Row -->
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="p-25">
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ field.name|title }} {{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Novo Produto</h1>
+                </div>
+                <form method="post" class="user">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input type="text" class="form-control form-control-user" name="nome"
+                                   required
+                                   value="{{ nome }}" placeholder="Nome">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="date" class="form-control form-control-user"
+                                   name="data_validade" required
+                                   value="{{ data_validade }}" placeholder="Data de Validade">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" step="0.01" class="form-control form-control-user"
+                               name="preco" required
+                               value="{{ preco }}" placeholder="Preço">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input type="number" class="form-control form-control-user"
+                                   name="quantidade"
+                                   required
+                                   value="{{ quantidade }}" placeholder="Quantidade">
+                        </div>
+                        <div class="col-sm-6">
+                            <select id="id_id_categoria" name="categoria" class="form-control form-control-user"
+                                    required>
+                                <option value="" selected="" disabled>Selecione</option>
+                                {% for categoria in TipoCategoria %}
+                                    <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-user btn-block">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
