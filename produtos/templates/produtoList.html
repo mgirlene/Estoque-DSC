@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Produtos
+{% endblock title %}
+
+{% block page %}
+    <h3 style="margin-top: .8rem;">Produtos</h3>
+{% endblock page %}
+
+{% block content %}
+    <!-- Content Row -->
+    {% csrf_token %}
+    <div id="list" class="row">
+        <div class="table-responsive col-md-12">
+            <table class="table table-striped" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Data de Validade</th>
+                    <th>Categoria</th>
+                    <th class="actions">Ações</th>
+                </tr>
+                </thead>
+                {% for Produto in produto_list %}
+                    <tbody>
+                    <tr>
+                        <td>{{ Produto.id }}</td>
+                        <td>{{ Produto.nome }}</td>
+                        <td>{{ Produto.preco }}</td>
+                        <td>{{ Produto.quantidade }}</td>
+                        <td>{{ Produto.data_validade }}</td>
+                        <td>{{ Produto.categoria.nome }}</td>
+                        <td class="actions">
+                            <a class="btn btn-primary mr-3" href="{% url 'produto_update' Produto.id %}">
+                                <i class="fas fa-edit"></i>
+                                <span>Editar</span>
+                            </a>
+                            <a class="btn btn-danger mr-3"
+                               href="{% url 'produto_delete' Produto.id %}">
+                                <i class="fas fa-trash-alt"></i>
+                                <span>Excluir</span>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div> <!-- /#list -->
+
+{% endblock content %}
