@@ -5,9 +5,10 @@ from .forms import ProdutoForm
 from .models import Produto
 from gerenciador.models import Categoria
 from estoques.models import Estoque
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class ProdutoView(CreateView):
+class ProdutoView(LoginRequiredMixin, CreateView):
     model = Produto
     template_name = 'cadastroProduto.html'
     form_class = ProdutoForm
@@ -31,13 +32,19 @@ class ProdutoView(CreateView):
         return reverse(self.success_url)
 
 
-class ProdutoListView(ListView):
+class ProdutoListView(LoginRequiredMixin, ListView):
     model = Produto
     context_object_name = 'produto_list'
     template_name = 'produtoList.html'
 
+    def get_queryset(self):
+        id = self.kwargs.get("pk")
+        estoque_id = list(estoque.id for estoque in Estoque.objects.filter(id=id))
+        produto = Produto.objects.filter(estoque__in=estoque_id)
+        return produto
 
-class ProdutoUpdateView(UpdateView):
+
+class ProdutoUpdateView(LoginRequiredMixin, UpdateView):
     model = Produto
     form_class = ProdutoForm
     template_name = 'produtoUpdate.html'
@@ -48,12 +55,18 @@ class ProdutoUpdateView(UpdateView):
         return context
 
     def get_success_url(self):
-        return reverse('produto_list')
+        for member in Produto.iterator():
+            id = member.id
+
+        return reverse('produto_list', args=[id])
 
 
-class ProdutoDeleteView(DeleteView):
+class ProdutoDeleteView(LoginRequiredMixin, DeleteView):
     model = Produto
     template_name = 'produtoDelete.html'
 
     def get_success_url(self):
-        return reverse('produto_list')
+        for member in Produto.iterator():
+            id = member.id
+
+        return reverse('produto_list', args=[id])

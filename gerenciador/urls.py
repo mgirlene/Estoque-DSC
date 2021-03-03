@@ -1,8 +1,8 @@
 from django.urls import path
 
-from gerenciador.views import index
+from gerenciador.views import IndexView
 
 urlpatterns = [
-    path('index', index, name='index'),
+    path('index/', IndexView.as_view(), name='index'),
 
 ]
