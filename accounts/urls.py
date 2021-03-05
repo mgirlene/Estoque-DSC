@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import LoginView, LogoutView, UserCreateView,reset
+from .views import LoginView, LogoutView, UserCreateView, reset
 
 urlpatterns = [
     path('', LoginView.as_view(), name="login"),

@@ -30,6 +30,12 @@ INSTALLED_APPS = [
     'estoques',
     'produtos',
     'vendas',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
 ]
 
 MIDDLEWARE = [
@@ -110,8 +116,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 2
 
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
@@ -120,3 +130,15 @@ AUTH_USER_MODEL = 'accounts.CustomUsuario'
 LOGIN_REDIRECT_URL = "index"
 LOGOUT_REDIRECT_URL = "login"
 LOGIN_URL = "login"
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'ESCOPO': [
+            'perfil',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}

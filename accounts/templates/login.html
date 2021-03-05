@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load socialaccount %}
 {% load static %}
 <html lang="en">
 
@@ -72,10 +73,11 @@
                                     </div>
                                    <button type="submit" class="btn btn-primary btn-user btn-block">Entrar</button>
                                   <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                        <a href="{% provider_login_url 'google' %}" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Entrar com o Google
                                         </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                        <a href="{% provider_login_url 'facebook' %}"
+                                           class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Entrar com o Facebook
                                         </a>
                                 </form>
