@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class Produto(models.Model):
@@ -10,8 +11,9 @@ class Produto(models.Model):
     categoria = models.ForeignKey("gerenciador.Categoria", on_delete=models.CASCADE)
     estoque = models.ForeignKey("estoques.Estoque", on_delete=models.CASCADE)
 
+
+    def __str__(self):
+        return '{}'.format(self.nome)
+
     class Meta:
         db_table = 'produto'
-
-def __str__(self):
-    return '{}'.format(self.id)

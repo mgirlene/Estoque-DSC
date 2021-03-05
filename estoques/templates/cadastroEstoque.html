@@ -6,26 +6,33 @@
 
 {% block page %}
     <h3 style="margin-top: .8rem;">Cadastro</h3>
+    <a class="btn btn-primary m-3"
+       href="{% url 'estoqueList' %}">
+        <i class="fas fa-list"></i>
+        <span>Meus Estoques</span>
+    </a>
 {% endblock page %}
 
 {% block content %}
-    <!-- Content Row -->
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="p-5">
-                <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Novo Estoque</h1>
-                </div>
-                <form method="post" class="user">
-                    {% csrf_token %}
-                    <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
-                            <input type="text" class="form-control form-control-user" name="nome"
-                                   value="{{ nome }}" placeholder="Nome">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 text-center">
+            <h4 class="m-0 font-weight-bold text-primary">Novo Estoque</h4>
+        </div>
+        <!-- Content Row -->
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <form method="post" class="user">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <div class="col-sm-12 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="nome"
+                                       value="{{ nome }}" placeholder="Nome">
+                            </div>
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-user btn-block">Cadastrar</button>
-                </form>
+                        <button type="submit" class="btn btn-primary btn-user btn-block">Cadastrar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

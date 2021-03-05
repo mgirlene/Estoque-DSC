@@ -6,9 +6,15 @@
 
 {% block page %}
     <h3 style="margin-top: .8rem;">Meus Estoques</h3>
+    <a class="btn btn-success mr-3"
+       href="{% url 'estoque' %}">
+        <i class="fas fa-plus"></i>
+        <span>Novo</span>
+    </a>
 {% endblock page %}
 
 {% block content %}
+    <hr>
     <!-- Content Row -->
     <div class="row">
         {% csrf_token %}
@@ -34,7 +40,7 @@
                         </a>
                     </div>
 
-                     <div class="btn-group">
+                    <div class="btn-group">
                         <a class="btn btn-success mr-3"
                            href="{% url 'produto' Estoque.id %}">
                             <i class="fas fa-plus"></i>

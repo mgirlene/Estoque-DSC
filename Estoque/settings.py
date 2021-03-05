@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'accounts',
     'estoques',
     'produtos',
+    'vendas',
 ]
 
 MIDDLEWARE = [
@@ -70,7 +71,7 @@ WSGI_APPLICATION = 'Estoque.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'estoque',
+        'NAME': 'estoque_dsc',
         'USER': 'postgres',
         'PASSWORD': '9991',
         'HOST': '127.0.0.1',

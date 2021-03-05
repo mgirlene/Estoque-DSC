@@ -49,15 +49,13 @@ class ProdutoUpdateView(LoginRequiredMixin, UpdateView):
     form_class = ProdutoForm
     template_name = 'produtoUpdate.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['TipoCategoria'] = Categoria.objects.all()
-        return context
-
     def get_success_url(self):
-        for member in Produto.iterator():
-            id = member.id
+        id_p = self.kwargs.get("pk")
+        estoque_id = list(produto.estoque.id for produto in Produto.objects.filter(id=id_p))
+        produto = Produto.objects.filter(id__in=estoque_id)
 
+        for member in produto.iterator():
+            id = member.id
         return reverse('produto_list', args=[id])
 
 
@@ -66,7 +64,10 @@ class ProdutoDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'produtoDelete.html'
 
     def get_success_url(self):
-        for member in Produto.iterator():
-            id = member.id
+        id_p = self.kwargs.get("pk")
+        estoque_id = list(produto.estoque.id for produto in Produto.objects.filter(id=id_p))
+        produto = Produto.objects.filter(id__in=estoque_id)
 
+        for member in produto.iterator():
+            id = member.id
         return reverse('produto_list', args=[id])

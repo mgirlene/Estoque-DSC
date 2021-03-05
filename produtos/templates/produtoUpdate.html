@@ -5,56 +5,66 @@
 {% endblock title %}
 
 {% block page %}
-    <h3 style="margin-top: .8rem;">Update</h3>
+    <h3 style="margin-top: .8rem;">Editar</h3>
+    <a class="btn btn-primary m-3"
+       onclick="javascript:history.back();">
+        <i class="fas fa-arrow-left"></i>
+        <span>Voltar</span>
+    </a>
 {% endblock page %}
 
 {% block content %}
+    <hr>
     <!-- Content Row -->
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="p-5">
-                <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Editar Produto</h1>
-                </div>
-               <form method="post" class="user">
-                    {% csrf_token %}
-                    <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="text" class="form-control form-control-user" name="nome"
-                                   required
-                                   value="{{ nome }}" placeholder="Nome">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 text-center">
+            <h4 class="m-0 font-weight-bold text-primary">Editar Produto</h4>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <form method="post" class="user">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="nome"
+                                       required
+                                       value="{{ form.nome.value }}">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="date" class="form-control form-control-user"
+                                       name="data_validade" required
+                                       value="{{ form.data_validade.value }}" placeholder="Data de Validade">
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <input type="date" class="form-control form-control-user"
-                                   name="data_validade" required
-                                   value="{{ data_validade }}" placeholder="Data de Validade">
+                        <div class="form-group">
+                            <input type="number" step="0.01" class="form-control form-control-user"
+                                   name="preco" required
+                                   value="{{ form.preco.value }}">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" step="0.01" class="form-control form-control-user"
-                               name="preco" required
-                               value="{{ preco }}" placeholder="Preço">
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="number" class="form-control form-control-user"
-                                   name="quantidade"
-                                   required
-                                   value="{{ quantidade }}" placeholder="Quantidade">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="number" class="form-control form-control-user"
+                                       name="quantidade"
+                                       required
+                                       value="{{ form.quantidade.value }}">
+                            </div>
+                            <div class="col-sm-6">
+                                <select id="id_id_categoria" name="categoria" class="form-control form-control-user">
+                                    {% for cat in form.categoria %}
+                                        <tr>
+                                            <td>
+                                                {{ cat }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <select id="id_id_categoria" name="categoria" class="form-control form-control-user"
-                                    required>
-                                <option value="" selected="" disabled>Selecione</option>
-                                {% for Categoria in TipoCategoria %}
-                                    <option value="{{ Categoria.id }}">{{ Categoria.nome }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-user btn-block">Editar</button>
-                </form>
+                        <button type="submit" class="btn btn-primary btn-user btn-block">Editar</button>
+                    </form>
 
+                </div>
             </div>
         </div>
     </div>

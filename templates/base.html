@@ -40,7 +40,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="/">
+            <a class="nav-link" href="{% url 'index' %}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -70,12 +70,12 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-folder"></i>
-                <span>Pedidos</span>
+                <span>Vendas</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="buttons.html">Todos os Pedidos</a>
-                    <a class="collapse-item" href="cards.html">Novo Pedido</a>
+                    <a class="collapse-item" href="{% url 'venda_list' %}">Vendas Cadastradas</a>
+                    <a class="collapse-item" href="{% url 'venda' %}">Registrar Venda</a>
                 </div>
             </div>
         </li>
