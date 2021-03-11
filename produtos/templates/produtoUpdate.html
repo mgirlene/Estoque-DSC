@@ -34,7 +34,7 @@
                             <div class="col-sm-6">
                                 <input type="date" class="form-control form-control-user"
                                        name="data_validade" required
-                                       value="{{ form.data_validade.value }}" placeholder="Data de Validade">
+                                       value="{{ form.data_validade.value|date:'Y-m-d' }}" placeholder="Data de Validade">
                             </div>
                         </div>
                         <div class="form-group">

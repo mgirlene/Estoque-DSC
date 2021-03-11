@@ -16,7 +16,6 @@ class VendasView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         venda = form.save(commit=False)
-        venda.cliente = self.request.user
         venda.data = datetime.now()
         id = self.kwargs.get("pk")
         produto_id = Produto.objects.get(id=id)

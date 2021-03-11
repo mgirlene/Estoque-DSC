@@ -5,7 +5,7 @@
 {% endblock title %}
 
 {% block page %}
-     <h3 style="margin-top: .8rem;">Cadastrar</h3>
+    <h3 style="margin-top: .8rem;">Cadastrar</h3>
     <a class="btn btn-primary m-3"
        onclick="javascript:history.back();">
         <i class="fas fa-arrow-left"></i>
@@ -45,6 +45,12 @@
                                        name="quantidade"
                                        required
                                        value="{{ quantidade }}" placeholder="Quantidade">
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user"
+                                       name="cliente"
+                                       required
+                                       value="{{ cliente }}" placeholder="Cliente">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-user btn-block">Registrar</button>
