@@ -13,7 +13,7 @@ class Produto(models.Model):
 
 
     def __str__(self):
-        return '{}'.format(self.nome)
+        return '{}'.format(self.quantidade)
 
     class Meta:
         db_table = 'produto'

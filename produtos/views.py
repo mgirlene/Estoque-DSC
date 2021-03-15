@@ -12,7 +12,6 @@ class ProdutoView(LoginRequiredMixin, CreateView):
     model = Produto
     template_name = 'cadastroProduto.html'
     form_class = ProdutoForm
-    success_url = 'estoqueList'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -29,7 +28,13 @@ class ProdutoView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         messages.success(self.request, 'Produto cadastrado com sucesso!')
-        return reverse(self.success_url)
+        id_p = self.kwargs.get("pk")
+        estoque_id = list(produto.estoque.id for produto in Produto.objects.filter(id=id_p))
+        produto = Produto.objects.filter(id__in=estoque_id)
+
+        for member in produto.iterator():
+            id = member.id
+        return reverse('produto_list', args=[id])
 
 
 class ProdutoListView(LoginRequiredMixin, ListView):

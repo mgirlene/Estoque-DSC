@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from estoques.models import Estoque
 from produtos.models import Produto
 from django.db.models import Q
+from django.db.models import Sum
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -16,6 +17,7 @@ class IndexView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         est = Estoque.objects.filter(Q(usuario=self.request.user.id)).count()
         context['list_estoque'] = est
-        p = Produto.objects.filter(Q(estoque = est)).count()
-        context['list_produto'] = p
+        estok = Estoque.objects.filter(Q(usuario=self.request.user.id))
+        prod = Produto.objects.filter(estoque__in=estok).aggregate(qtd=Sum('quantidade'))['qtd']
+        context['list_produto'] = prod
         return context

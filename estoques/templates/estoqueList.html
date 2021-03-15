@@ -16,47 +16,48 @@
 {% block content %}
     <hr>
     <!-- Content Row -->
-    <div class="row">
-        {% csrf_token %}
-        {% for Estoque in estoque_list %}
-            <div class="card" style="margin-top:20px;">
-                <div class="card-header">
-                    <h3>{{ Estoque.nome }}</h3>
-                </div>
-                <div class="footer" style="margin: 20px;">
+    <div class="container-fluid">
+        <div class="row">
+            {% csrf_token %}
+            {% for Estoque in estoque_list %}
+                    <div class="card justify-content-center" style="margin-top:10px;">
+                        <div class="card-header" style="background-color: #147e84; color: #fff;">
+                            <h3>{{ Estoque.nome }}</h3>
+                        </div>
+                        <div class="footer" style="margin: 30px;">
+                            <div class="btn-group">
+                                <a class="btn btn-primary mr-3" href="{% url 'estoque_update' Estoque.id %}">
+                                    <i class="fas fa-edit"></i>
+                                    <span>Editar</span>
+                                </a>
+                            </div>
 
-                    <div class="btn-group">
-                        <a class="btn btn-primary mr-3" href="{% url 'estoque_update' Estoque.id %}">
-                            <i class="fas fa-edit"></i>
-                            <span>Editar</span>
-                        </a>
-                    </div>
+                            <div class="btn-group">
+                                <a class="btn btn-danger mr-3"
+                                   href="{% url 'estoque_delete' Estoque.id %}">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span>Excluir</span>
+                                </a>
+                            </div>
 
-                    <div class="btn-group">
-                        <a class="btn btn-danger mr-3"
-                           href="{% url 'estoque_delete' Estoque.id %}">
-                            <i class="fas fa-trash-alt"></i>
-                            <span>Excluir</span>
-                        </a>
-                    </div>
+                            <div class="btn-group">
+                                <a class="btn btn-success mr-3"
+                                   href="{% url 'produto' Estoque.id %}">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Produto</span>
+                                </a>
+                            </div>
 
-                    <div class="btn-group">
-                        <a class="btn btn-success mr-3"
-                           href="{% url 'produto' Estoque.id %}">
-                            <i class="fas fa-plus"></i>
-                            <span>Produto</span>
-                        </a>
+                            <div class="btn-group">
+                                <a class="btn btn-info mr-3"
+                                   href="{% url 'produto_list' Estoque.id %}">
+                                    <i class="fas fa-search"></i>
+                                    <span>Visualizar</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="btn-group">
-                        <a class="btn btn-info mr-3"
-                           href="{% url 'produto_list' Estoque.id %}">
-                            <i class="fas fa-search"></i>
-                            <span>Visualizar</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock content %}
