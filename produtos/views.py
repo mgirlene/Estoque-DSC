@@ -37,6 +37,7 @@ class ProdutoView(LoginRequiredMixin, CreateView):
         return reverse('produto_list', args=[id])
 
 
+
 class ProdutoListView(LoginRequiredMixin, ListView):
     model = Produto
     context_object_name = 'produto_list'

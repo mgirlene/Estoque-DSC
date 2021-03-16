@@ -31,7 +31,6 @@
                             <th>Nome</th>
                             <th>Preço</th>
                             <th>Quantidade</th>
-                            <th>Data de Validade</th>
                             <th>Categoria</th>
                             <th class="actions">Ações</th>
                         </tr>
@@ -43,15 +42,18 @@
                                 <td>{{ Produto.nome }}</td>
                                 <td>{{ Produto.preco }}</td>
                                 <td>{{ Produto.quantidade }}</td>
-                                <td>{{ Produto.data_validade }}</td>
                                 <td>{{ Produto.categoria.nome }}</td>
                                 <td class="actions">
-                                    <a class="btn btn-primary mr-3" href="{% url 'produto_update' Produto.id %}">
-                                        <i class="fas fa-edit"></i>
+                                    <a class="btn btn-primary mr-2" href="{% url 'produto_update' Produto.id %}">
+                                        <i class="fas fa-edit"> Editar</i>
                                     </a>
-                                    <a class="btn btn-danger mr-3"
+                                    <a class="btn btn-danger mr-2"
                                        href="{% url 'produto_delete' Produto.id %}">
-                                        <i class="fas fa-trash-alt"></i>
+                                        <i class="fas fa-trash-alt"> Excluir</i>
+                                    </a>
+                                     <a class="btn btn-info mr-2"
+                                       href="{% url 'venda' Produto.id %}">
+                                        <i class="fas fa-cart-arrow-down"> Venda</i>
                                     </a>
                                 </td>
                             </tr>

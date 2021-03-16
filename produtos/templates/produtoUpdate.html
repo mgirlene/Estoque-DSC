@@ -27,29 +27,28 @@
                         {% csrf_token %}
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Nome</label>
                                 <input type="text" class="form-control form-control-user" name="nome"
                                        required
                                        value="{{ form.nome.value }}">
                             </div>
                             <div class="col-sm-6">
-                                <input type="date" class="form-control form-control-user"
-                                       name="data_validade" required
-                                       value="{{ form.data_validade.value|date:'Y-m-d' }}" placeholder="Data de Validade">
+                                <label>Preço</label>
+                                <input type="text" step="0.01" id="id_preco" class="form-control form-control-user"
+                                       name="preco" required
+                                       value="{{ form.preco.value }}">
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="number" step="0.01" class="form-control form-control-user"
-                                   name="preco" required
-                                   value="{{ form.preco.value }}">
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input type="number" class="form-control form-control-user"
+                                <label>Quantidade</label>
+                                <input type="number" id="id_qtd" class="form-control form-control-user"
                                        name="quantidade"
                                        required
                                        value="{{ form.quantidade.value }}">
                             </div>
                             <div class="col-sm-6">
+                                <label>Categoria</label>
                                 <select id="id_id_categoria" name="categoria" class="form-control form-control-user">
                                     {% for cat in form.categoria %}
                                         <tr>
