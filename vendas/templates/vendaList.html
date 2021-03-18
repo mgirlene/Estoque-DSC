@@ -33,7 +33,6 @@
                         <th>Cliente</th>
                         <th>Produto</th>
                         <th>Quantidade</th>
-                        <th class="actions">Ações</th>
                     </tr>
                     </thead>
                     {% for Venda in venda_list %}
@@ -43,19 +42,8 @@
                             <td>{{ Venda.numero }}</td>
                             <td>{{ Venda.data }}</td>
                             <td>{{ Venda.cliente }}</td>
-                            <td>{{ Venda.produto }}</td>
+                            <td>{{ Venda.produto.nome }}</td>
                             <td>{{ Venda.quantidade }}</td>
-                            <td class="actions">
-                                <a class="btn btn-primary mr-3" href="{% url 'venda_update' Venda.id %}">
-                                    <i class="fas fa-edit"></i>
-                                    <span>Editar</span>
-                                </a>
-                                <a class="btn btn-danger mr-3"
-                                   href="{% url 'venda_delete' Venda.id %}">
-                                    <i class="fas fa-trash-alt"></i>
-                                    <span>Excluir</span>
-                                </a>
-                            </td>
                         </tr>
                         </tbody>
                     {% endfor %}

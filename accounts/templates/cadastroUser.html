@@ -1,6 +1,7 @@
-<!DOCTYPE html>
 {% load static %}
-<html lang="en">
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
 
@@ -14,9 +15,8 @@
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
@@ -27,67 +27,69 @@
 
 <div class="container">
 
-    <div class="card o-hidden border-0 shadow-lg my-5">
-        <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->]
-
-            {% if form.errors %}
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <div class="alert alert-danger">
-                            <strong>{{ field.name|title }} {{ error|escape }}</strong>
-                        </div>
-                    {% endfor %}
-                {% endfor %}
-                {% for error in form.non_field_errors %}
-                    <div class="alert alert-danger">
-                        <strong>{{ error|escape }}</strong>
-                    </div>
-                {% endfor %}
-            {% endif %}
-
-            <div class="row">
-                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                <div class="col-lg-7">
-                    <div class="p-5">
-                        <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Cadastre-se</h1>
-                        </div>
-                        <form method="post" class="user">
-                            {% csrf_token %}
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" name="first_name"
-                                           value="{{ first_name }}" placeholder="Nome">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" name="last_name"
-                                           value="{{ last_name }}" placeholder="Sobrenome">
-                                </div>
+    <div class="row justify-content-center">
+        <div class="col-xl-8 col-lg-9">
+            <!-- Social registration form-->
+            <div class="card my-5">
+                <div class="card-body p-4 text-center">
+                    <div class="h3 font-weight-light mb-3">Cadastre-se</div>
+                    <div class="small text-muted mb-2">Faça login usando...</div>
+                    <!-- Social registration links-->
+                    <a class="btn btn-icon btn-facebook btn-circle mx-1" href="{% provider_login_url 'facebook' %}">
+                        <svg class="svg-inline--fa fa-facebook-f fa-w-10 fa-fw fa-sm" aria-hidden="true"
+                             focusable="false" data-prefix="fab" data-icon="facebook-f" role="img"
+                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
+                            <path fill="currentColor"
+                                  d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
+                        </svg><!-- <i class="fab fa-facebook-f fa-fw fa-sm"></i> Font Awesome fontawesome.com --></a>
+                    <a class="btn btn-icon btn-google btn-circle mx-1" href="{% provider_login_url 'google' %}">
+                        <svg class="svg-inline--fa fa-google fa-w-16 fa-fw fa-sm" aria-hidden="true" focusable="false"
+                             data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 488 512" data-fa-i2svg="">
+                            <path fill="currentColor"
+                                  d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
+                        </svg><!-- <i class="fab fa-google fa-fw fa-sm"></i> Font Awesome fontawesome.com --></a>
+                </div>
+                <hr class="my-0">
+                <div class="card-body p-4">
+                    <div class="text-center small text-muted mb-4">... ou insira suas informações abaixo.</div>
+                    <!-- Login form-->
+                    <form method="post" class="user">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="first_name"
+                                       value="{{ first_name }}" placeholder="Nome">
                             </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control form-control-user" name="username"
-                                       value="{{ username }}" placeholder="Email">
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" name="last_name"
+                                       value="{{ last_name }}" placeholder="Sobrenome">
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="password" class="form-control form-control-user" name="password1"
-                                           value="{{ password1 }}" placeholder="Senha">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="password" class="form-control form-control-user"
-                                           name="password2" value="{{ password2 }}" placeholder="Repetir senha">
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control form-control-user" name="username"
+                                   value="{{ username }}" placeholder="Email">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="password" class="form-control form-control-user" name="password1"
+                                       value="{{ password1 }}" placeholder="Senha">
                             </div>
-                            <button type="submit" class="btn btn-primary btn-user btn-block">Cadastrar</button>
-                        </form>
-                        <hr>
-                        <div class="text-center">
-                            <a class="small" href="{% url 'reset' %}">Esqueceu a senha?</a>
+                            <div class="col-sm-6">
+                                <input type="password" class="form-control form-control-user"
+                                       name="password2" value="{{ password2 }}" placeholder="Repetir senha">
+                            </div>
                         </div>
-                        <div class="text-center">
-                            <a class="small" href="{% url 'login' %}">Já possui uma conta? Entrar!</a>
+                        <div class="form-group d-flex align-items-center justify-content-center mb-0">
+                            <button type="submit" class="btn-lg btn-primary btn-user">Cadastrar</button>
                         </div>
+                    </form>
+                </div>
+                <hr class="my-0">
+                <div class="card-body px-5 py-4">
+                    <div class="small text-center">
+                        Já tem uma conta?
+                        <a href="{% url 'login' %}">Login!</a>
                     </div>
                 </div>
             </div>
@@ -105,6 +107,9 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+        integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+        crossorigin="anonymous"></script>
 
 </body>
 

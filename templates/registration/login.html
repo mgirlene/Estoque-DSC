@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-{% load socialaccount %}
 {% load static %}
-<html lang="en">
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
 
@@ -15,9 +15,8 @@
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
@@ -30,72 +29,76 @@
 
     <!-- Outer Row -->
     <div class="row justify-content-center">
-
-        <div class="col-xl-10 col-lg-12 col-md-9">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                        <div class="col-lg-6">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Bem vindo de Volta!</h1>
+        <div class="col-xl-5 col-lg-6 col-md-8 col-sm-11">
+            <!-- Social login form-->
+            <div class="card my-5">
+                <div class="card-body p-4 text-center">
+                    <div class="h3 font-weight-light mb-3">Login</div>
+                    <!-- Social login links-->
+                    <a class="btn btn-icon btn-facebook btn-circle mx-1" href="{% provider_login_url 'facebook' %}">
+                        <svg class="svg-inline--fa fa-facebook-f fa-w-10 fa-fw fa-sm" aria-hidden="true"
+                             focusable="false" data-prefix="fab" data-icon="facebook-f" role="img"
+                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
+                            <path fill="currentColor"
+                                  d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
+                        </svg><!-- <i class="fab fa-facebook-f fa-fw fa-sm"></i> Font Awesome fontawesome.com --></a>
+                    <a class="btn btn-icon btn-google btn-circle mx-1" href="{% provider_login_url 'google' %}">
+                        <svg class="svg-inline--fa fa-google fa-w-16 fa-fw fa-sm" aria-hidden="true" focusable="false"
+                             data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 488 512" data-fa-i2svg="">
+                            <path fill="currentColor"
+                                  d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
+                        </svg><!-- <i class="fab fa-google fa-fw fa-sm"></i> Font Awesome fontawesome.com --></a>
+                </div>
+                <hr class="my-0">
+                <div class="card-body p-5">
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ field.name|title }} {{ error|escape }}</strong>
                                 </div>
-                                <form method="post" class="user">
-                                    {% csrf_token %}
-
-                                    {% if form.errors %}
-                                        {% for field in form %}
-                                            {% for error in field.errors %}
-                                                <div class="alert alert-danger">
-                                                    <strong>{{ field.name|title }} {{ error|escape }}</strong>
-                                                </div>
-                                            {% endfor %}
-                                        {% endfor %}
-                                        {% for error in form.non_field_errors %}
-                                            <div class="alert alert-danger">
-                                                <strong>{{ error|escape }}</strong>
-                                            </div>
-                                        {% endfor %}
-                                    {% endif %}
-                                    <div class="form-group">
-                                        <input type="email" class="form-control form-control-user"
-                                               id="username" name="username" aria-describedby="emailHelp"
-                                               placeholder="Email">
-                                        <p class="errorlist">{{ form.errors.username }}</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user"
-                                               id="password" name="password" placeholder="Senha">
-                                        <p class="errorlist">{{ form.errors.password }}</p>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">Entrar</button>
-                                    <hr>
-                                    <a href="{% provider_login_url 'google' %}"
-                                       class="btn btn-google btn-user btn-block">
-                                        <i class="fab fa-google fa-fw"></i> Entrar com o Google
-                                    </a>
-                                    <a href="{% provider_login_url 'facebook' %}"
-                                       class="btn btn-facebook btn-user btn-block">
-                                        <i class="fab fa-facebook-f fa-fw"></i> Entrar com o Facebook
-                                    </a>
-                                </form>
-                                <div class="text-center">
-                                    <a class="small" href="{% url 'password_reset' %}">Esqueceu a senha?</a>
-                                </div>
-                                <div class="text-center">
-                                    <a class="small" href="{% url 'cadastrar_usuario' %}">Cadastre-se</a>
-                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
                             </div>
+                        {% endfor %}
+                    {% endif %}
+                    <!-- Login form-->
+                    <form method="post">
+                        {% csrf_token %}
+                        <!-- Form Group (email address)-->
+                        <div class="form-group">
+                            <label class="text-gray-600 small" for="id_username">Email</label>
+                            <input name="username" id="id_username" class="form-control form-control-solid" type="text"
+                                   aria-label="Email Address" placeholder="">
                         </div>
+                        <!-- Form Group (password)-->
+                        <div class="form-group">
+                            <label class="text-gray-600 small" for="id_password">Senha</label>
+                            <input name="password" id="id_password" class="form-control form-control-solid"
+                                   type="password" aria-label="Password" placeholder="">
+                        </div>
+                        <!-- Form Group (forgot password link)-->
+                        <div class="form-group float-"><a class="small" href="{% url 'password_reset' %}">Esqueceu a
+                            senha?</a></div>
+                        <!-- Form Group (login box)-->
+                        <div class="form-group d-flex align-items-center justify-content-center mb-0">
+                            <button class="btn btn-primary btn-user" type="submit">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <hr class="my-0">
+                <div class="card-body px-5 py-4">
+                    <div class="small text-center">
+                        Novo usuário?
+                        <a href="{% url 'cadastrar_usuario' %}">Crie uma conta</a>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 
 </div>

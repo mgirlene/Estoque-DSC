@@ -79,12 +79,6 @@
                 </div>
             </div>
         </li>
-        <hr class="sidebar-divider">
-        <li class="nav-item active">
-            <a class="nav-link" href="{% url 'logout' %}">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Sair</span></a>
-        </li>
 
     </ul>
     <!-- End of Sidebar -->
@@ -128,8 +122,7 @@
                                 Alterar Senha
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a style="color: red;" class="dropdown-item" href="#" data-toggle="modal"
-                               data-target="#logoutModal">
+                            <a style="color: red;" class="dropdown-item" href="{% url 'logout' %}">
                                 <i style="color: red;"
                                    class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i> Sair
                             </a>
