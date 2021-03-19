@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
+    'rest_framework',
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -179,3 +181,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 #facebook
 SOCIAL_AUTH_FACEBOOK_KEY = '1360801010954036'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET ='a01dec8c42f06cfb515f1fd01a5c0014' #app key
+
+REST_FRAMEWORK = {
+   'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+   'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
+}

@@ -76,6 +76,7 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{% url 'venda_list' %}">Vendas Cadastradas</a>
+                    <a class="collapse-item" href="{% url 'relatorio' %}">Gerar Relatório</a>
                 </div>
             </div>
         </li>
@@ -138,7 +139,7 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <div class="d-sm-flex align-items-center justify-content-between">
                     {% block page %}<h1 class="h3 mb-0 text-gray-800"></h1>{% endblock page %}
                 </div>
                 {% block content %}

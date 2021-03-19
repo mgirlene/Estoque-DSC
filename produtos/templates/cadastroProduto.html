@@ -5,8 +5,8 @@
 {% endblock title %}
 
 {% block page %}
-    <h3 style="margin-top: .8rem;">Cadastrar</h3>
-    <a class="btn btn-primary m-3"
+    <h3>Cadastrar</h3>
+    <a class="btn btn-primary"
        onclick="javascript:history.back();">
         <i class="fas fa-arrow-left"></i>
         <span>Voltar</span>
@@ -59,7 +59,7 @@
                                        value="{{ quantidade }}" placeholder="Quantidade">
                             </div>
                             <div class="col-sm-6">
-                                <select class="form-control-user form-control" id="id_categoria" name="categoria"
+                                <select class="form-control" id="id_categoria" name="categoria"
                                         required>
                                     <option value="" selected="" disabled>Selecione</option>
                                     {% for categoria in TipoCategoria %}

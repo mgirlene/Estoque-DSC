@@ -5,8 +5,8 @@
 {% endblock title %}
 
 {% block page %}
-    <h4 style="margin-top: .8rem;">Meus Estoques</h4>
-    <a class="btn btn-success mr-3"
+    <h4>Meus Estoques</h4>
+    <a class="btn btn-success"
        href="{% url 'estoque' %}">
         <i class="fas fa-plus"></i>
         <span>Novo</span>
@@ -20,45 +20,46 @@
         <div class="row">
             {% csrf_token %}
             {% for Estoque in estoque_list %}
-                <div class="card justify-content-center" style="margin-top:20px;">
-                    <div class="card-header" style="background-color: #147e84; color: #fff;height: 49px;">
-                        <h4>{{ Estoque.nome }}</h4>
-                    </div>
-                    <div class="footer" style="margin: 25px; height: 19px;">
-                        <div class="btn-group">
-                            <a class="btn btn-primary mr-3" href="{% url 'estoque_update' Estoque.id %}">
-                                <i class="fas fa-edit"></i>
-                                <span>Editar</span>
-                            </a>
+                <div class="col-12 col-lg-6 col-md-6 d-flex align-items-sm-stretch flex-column">
+                    <div class="card d-flex flex-fill mb-5">
+                        <div class="card-header" style="background-color: #147e84; color: #fff;height: 49px;">
+                            <h4>{{ Estoque.nome }}</h4>
                         </div>
+                        <div class="footer" style="margin: 30px; height: 30px;">
+                            <div class="btn-group">
+                                <a class="btn btn-primary ml-3" href="{% url 'estoque_update' Estoque.id %}">
+                                    <i class="fas fa-edit"></i>
+                                    <span>Editar</span>
+                                </a>
+                            </div>
 
-                        <div class="btn-group">
-                            <a class="btn btn-danger mr-3"
-                               href="{% url 'estoque_delete' Estoque.id %}">
-                                <i class="fas fa-trash-alt"></i>
-                                <span>Excluir</span>
-                            </a>
-                        </div>
+                            <div class="btn-group">
+                                <a class="btn btn-danger"
+                                   href="{% url 'estoque_delete' Estoque.id %}">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span>Excluir</span>
+                                </a>
+                            </div>
 
-                        <div class="btn-group">
-                            <a class="btn btn-success mr-3"
-                               href="{% url 'produto' Estoque.id %}">
-                                <i class="fas fa-plus"></i>
-                                <span>Produto</span>
-                            </a>
-                        </div>
+                            <div class="btn-group">
+                                <a class="btn btn-success"
+                                   href="{% url 'produto' Estoque.id %}">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Produto</span>
+                                </a>
+                            </div>
 
-                        <div class="btn-group">
-                            <a class="btn btn-info mr-3"
-                               href="{% url 'produto_list' Estoque.id %}">
-                                <i class="fas fa-search"></i>
-                                <span>Visualizar</span>
-                            </a>
+                            <div class="btn-group">
+                                <a class="btn btn-info"
+                                   href="{% url 'produto_list' Estoque.id %}">
+                                    <i class="fas fa-search"></i>
+                                    <span>Produtos</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             {% endfor %}
-        </div>
     </div>
     </div>
 {% endblock content %}

@@ -5,8 +5,8 @@
 {% endblock title %}
 
 {% block page %}
-    <h3 style="margin-top: .8rem;">Deletar Estoque</h3>
-    <a class="btn btn-primary m-3"
+    <h3>Deletar Estoque</h3>
+    <a class="btn btn-primary"
        onclick="javascript:history.back();">
         <i class="fas fa-arrow-left"></i>
         <span>Voltar</span>
@@ -16,16 +16,24 @@
 {% block content %}
     <hr>
     <!-- Content Row -->
-    <div class="card border-left-primary shadow h-100 py-2">
-        <div class="card-body">
-            <div class="row no-gutters align-items-center">
-                <form method="post">
-                    {% csrf_token %}
-                    <h2>Você realmente deseja excluir o estoque: "{{ object.nome }}" ?</h2>
-                    <input class="btn btn-danger btn-user" type="submit" value="Confirmar">
-                </form>
+     <!-- Content Row -->
+    <div class="row justify-content-center m-5">
+        <div class="col-12 col-sm-6 col-md-8 d-flex align-items-sm-center flex-column">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <form method="post" class="user">
+                            {% csrf_token %}
+                            <h4>Você realmente deseja excluir o estoque: "{{ object.nome }}" ?</h4>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <input class="btn btn-danger" type="submit" value="Confirmar">
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
     </div>
 {% endblock content %}

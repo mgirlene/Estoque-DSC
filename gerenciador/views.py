@@ -1,5 +1,4 @@
-from django.db.models.sql import query
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from estoques.models import Estoque
 from produtos.models import Produto
@@ -7,7 +6,26 @@ from vendas.models import Vendas
 from django.db.models import Q
 from django.db.models import Sum
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from Estoque.utils import render_to_pdf
+
+
+class GeneratePDFVendas(View):
+    def get(self, request, *args, **kwargs):
+
+        vendas = Vendas.objects.order_by('data').filter(usuario=self.request.user)
+        data = {'vendas': vendas}
+
+        pdf = render_to_pdf('relatorio.html', data)
+
+        if pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            filename = "Relatorio_Vendas.pdf"
+            content = 'attachment; filename=%s' % (filename)
+            response['Content-Disposition'] = content
+            return response
+        else:
+            return HttpResponse("Not found")
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -31,24 +49,6 @@ class IndexView(LoginRequiredMixin, TemplateView):
         return context
 
         ##Gráficos##
-
-        '''queryset = Vendas.objects.filter(usuario=self.request.user.id).values('produto__nome').annotate(Sum('quantidade'))
-        print(queryset)
-        
-
-        names = [obj.itens() for obj in queryset]
-        context['list_produtos'] = names'''
-
-        '''qtd_p = [ for ob in queryset]
-        context['list_qtd'] = qtd_p
-
-        estok = Estoque.objects.filter(Q(usuario=self.request.user.id)).values('nome', 'produto__vendas__quantidade').annotate(Sum())
-        chart = [c.nome for c in estok]
-        context['list_est'] = chart
-
-        chart2 = [p.quantidade for p in queryset]
-        context['list_qtd_prod'] = chart2'''
-
 
     def home(request):
         return render(request, 'index.html')
@@ -84,5 +84,3 @@ class IndexView(LoginRequiredMixin, TemplateView):
             'labels1': labels1,
             'data1': data1,
         })
-
-

@@ -66,7 +66,16 @@
                 </div>
             </div>
         </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a class="btn btn-primary mr-3"
+               href="{% url 'relatorio' %}">
+                <i class="fa fa-download"></i>
+                <span>Relatório de Vendas</span>
+            </a>
+        </div>
     </div>
+
+
 
     <!-- Content Row -->
     <!-- Bar Chart -->
@@ -77,19 +86,19 @@
             </div>
             <div class="card-body">
                 <div class="chart-bar">
-                     <canvas id="vendas-chart" data-url="{% url 'vendas-chart' %}"></canvas>
+                    <canvas id="vendas-chart" data-url="{% url 'vendas-chart' %}"></canvas>
                 </div>
                 <hr>
             </div>
         </div>
 
-     <div class="card shadow mb-4 col-md-6">
+        <div class="card shadow mb-4 col-md-6">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Estoques/Quantidade de Produtos</h6>
             </div>
             <div class="card-body">
                 <div class="chart-bar">
-                     <canvas id="estoques-chart" data-url="{% url 'estoques-chart' %}"></canvas>
+                    <canvas id="estoques-chart" data-url="{% url 'estoques-chart' %}"></canvas>
                 </div>
                 <hr>
             </div>
@@ -185,7 +194,7 @@
 
         });
 
-         $(function () {
+        $(function () {
             var $estoquesChart = $("#estoques-chart");
             $.ajax({
                 url: $estoquesChart.data("url"),
