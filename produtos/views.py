@@ -34,7 +34,7 @@ class ProdutoView(LoginRequiredMixin, CreateView):
 
         for member in produto.iterator():
             id = member.id
-        return reverse('produto_list', args=[id])
+        return reverse('produto_list', args=[id_p])
 
 
 

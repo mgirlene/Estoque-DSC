@@ -25,8 +25,7 @@ class VendasView(LoginRequiredMixin, CreateView):
         venda.usuario = self.request.user
         qtd_produto = form.cleaned_data["quantidade"]
         sub_qtd = Produto.objects.filter(id=id).aggregate(qtd=Sum('quantidade'))['qtd']
-        total = sub_qtd - qtd_produto;
-        print(qtd_produto)
+        total = sub_qtd - qtd_produto
         Produto.objects.filter(id=id).update(quantidade=total)
         venda.save()
         return super(VendasView, self).form_valid(form)
